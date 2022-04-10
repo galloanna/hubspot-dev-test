@@ -11,11 +11,15 @@
   "license": "ISC",
   "private": true,
   "dependencies": {
-    "parcel": "^2.2.1"
+    "parcel": "^2.4.1",
+    "vue": "^3.2.31"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.12",
-    "@babel/preset-env": "^7.16.11"
+    "@babel/preset-env": "^7.16.11",
+    "@parcel/transformer-vue": "^2.4.1",
+    "eslint": "^8.13.0",
+    "eslint-plugin-vue": "^8.6.0"
   }
 }
