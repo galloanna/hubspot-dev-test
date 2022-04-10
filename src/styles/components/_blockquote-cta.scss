@@ -1,0 +1,99 @@
+.blockquote-cta {
+  &__section {
+    background-color: $soft-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__wrapper {
+    margin-top: 30px;
+    margin-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-left: 2px solid $orange;
+    position: relative;
+    @include xsmall {
+      margin-left: 30px;
+      margin-right: 30px;
+    }
+    @include small {
+      max-width: 80%;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+    @include medium {
+      max-width: 75%;
+    }
+    @include large {
+      max-width: 65%;
+      flex-direction: row;
+      align-items: center;
+    }
+    @include xlarge {
+      max-width: 800px;
+    }
+    &::before {
+      position: absolute;
+      top: -10px;
+      left: -20px;
+      content: '';
+      background-color: $orange;
+      background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg id='a' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 19.61 12.9'%3E%3Cpath d='M6.92,.16c.56,1.54-.87,1.91-1.58,2.71-.64,.73-1.24,1.49-1.84,2.22,.35,1.51,1.59,.9,2.36,1.2,2.08,.8,2.88,2.33,2.09,4.29-.86,2.12-2.66,2.82-4.87,1.98-1.11-.42-1.98-1.19-2.5-2.28C-1.43,6.06,1.96,.66,6.92,.16Z' style='fill:%23fff;'/%3E%3Cpath d='M15.16,5.58c.41,.2,.69,.41,.99,.47,2.22,.39,3.78,1.32,3.4,3.94-.25,1.71-1.3,2.75-2.95,2.88-2.5,.19-4.09-1.27-4.89-3.47-1.36-3.75,1.51-7.96,6.27-9.4,.98,1.47-.43,2-1.12,2.8-.64,.74-1.56,1.28-1.7,2.79Z' style='fill:%23fff;'/%3E%3C/svg%3E");
+      background-size: 20px 20px;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      border: 2px solid $white;
+      box-sizing: border-box;
+    }
+    &::after {
+      position: absolute;
+      bottom: 0px;
+      left: -6px;
+      content: '';
+      background-color: $orange;
+      border-radius: 50%;
+      width: 10px;
+      height: 10px;
+    }
+  }
+  &__container {
+    color: $medium-gray;
+    flex: 1;
+    padding-left: 30px;
+  }
+  &__quote {
+    font-family: 'Roboto Slab';
+    font-size: 16px;
+    line-height: 1.7rem;
+  }
+  &__author {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 12px;
+  }
+  &__cta {
+    cursor: pointer;
+    margin-left: 30px;
+    width: auto;
+    font-family: 'Montserrat';
+    background: $blue;
+    color: $white;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 20px 35px;
+    font-size: 12px;
+    transition: filter 0.2s linear;
+    margin-top: 30px;
+    @include large {
+      margin-top: 0px;
+    }
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+}
