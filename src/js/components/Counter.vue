@@ -23,8 +23,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .counter {
+  button {
+    background-color: purple;
+    padding: 20px;
+  }
   background-color: red;
   border-radius: 10px;
   color: white;
