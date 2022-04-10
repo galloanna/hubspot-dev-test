@@ -4,6 +4,9 @@
 // THEME-LEVEL STYLES
 @import './theme/colors';
 
+// COMPONENT-LEVEL STYLES
+@import './components/blockquote-cta';
+
 body {
   margin: 0;
   font-family: 'Roboto', 'Montserrat', sans-serif;
