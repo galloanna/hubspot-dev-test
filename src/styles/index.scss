@@ -1,3 +1,9 @@
+// CORE + BASE STYLES
+@import './core/a11y';
+
+// THEME-LEVEL STYLES
+@import './theme/colors';
+
 body {
   margin: 0;
   font-family: 'Roboto', 'Montserrat', sans-serif;

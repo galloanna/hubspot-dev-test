@@ -1,0 +1,19 @@
+$blue: var(--color-blue);
+$orange: var(--color-orange);
+$white: var(--color-white);
+$soft-white: var(--color-soft-white);
+$light-gray: var(--color-light-gray);
+$medium-gray: var(--color-medium-gray);
+$dark-gray: var(--color-dark-gray);
+$black: var(--color-black);
+
+:root {
+  --color-blue: #00a2e0;
+  --color-orange: #ff6c01;
+  --color-white: #ffffff;
+  --color-soft-white: #f9f8f7;
+  --color-light-gray: #e3e4e3;
+  --color-medium-gray: #555555;
+  --color-dark-gray: #353232;
+  --color-black: #000000;
+}
