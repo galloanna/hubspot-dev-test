@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <Filters :filterItems="filterItems" :search="search" :filteredItems="filteredItems" />
+  <div class="exercise-2">
+    <Filters :filterItemsByType="filterItemsByType" :search="search" :filteredItems="filteredItems" />
     <Items :items="items" />
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
     };
   },
   methods: {
-    filterItems(mediaType) {
+    filterItemsByType(mediaType) {
       this.resetItems();
       if (mediaType !== 'All') {
         this.items = this.items.filter((item) => {
@@ -46,3 +46,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "../styles/index.scss";
+.exercise-2 {
+  border: 1px solid $light-gray;
+  display: flex;
+  flex-direction: column;
+  }
+</style>
