@@ -3,9 +3,9 @@
     <h1 class="sr-only">Available Media</h1>
     <div class="media-items">
       <div class="media-item" v-for="item in items" :key="item.id">
-        <img class="media-item__poster" :src="item.poster" />
+        <img class="media-item__poster" :src="item.poster" :alt="item.title + ' poster'" />
         <h3 class="media-item__title">{{ item.title }} ({{ item.year }})</h3>
-        <h4 class="media-item__genres">Genres: {{ item.genre }}</h4>
+        <h4 class="media-item__genres">Genres: {{ item.genre.join(", ") }}</h4>
       </div>
     </div>
   </div>
