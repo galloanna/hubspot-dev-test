@@ -23,9 +23,6 @@ export default {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
   }
-.media-item {
-  width: 30%;
-}
 
 .media-item__poster {
   width: 100%;

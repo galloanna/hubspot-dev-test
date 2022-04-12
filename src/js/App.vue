@@ -1,6 +1,6 @@
 <template>
-  <div class="exercise-2">
-    <Filters :filterItemsByType="filterItemsByType" :search="search" :filteredItems="filteredItems" />
+  <div>
+    <Filters v-if="this.items.length" :filterItems="filterItems" :search="search" :filteredItems="filteredItems" :items="this.items"/>
     <Items :items="items" />
   </div>
 </template>
@@ -25,8 +25,13 @@ export default {
       type: '',
     };
   },
+
+  created() {
+    console.log('what are the items', this.items)
+  },
+
   methods: {
-    filterItemsByType(mediaType) {
+    filterItems(mediaType) {
       this.resetItems();
       if (mediaType !== 'All') {
         this.items = this.items.filter((item) => {
@@ -46,12 +51,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-@import "../styles/index.scss";
-.exercise-2 {
-  border: 1px solid $light-gray;
-  display: flex;
-  flex-direction: column;
-  }
-</style>
