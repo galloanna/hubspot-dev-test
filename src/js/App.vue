@@ -11,6 +11,7 @@ import Items from './components/Items.vue';
 
 import dataSet from './data/data.json';
 const mediaData = dataSet.media;
+const alphaMediaData = mediaData.sort((a, b) => a.title < b.title ? -1 : 1);
 
 export default {
   name: 'App',
@@ -20,7 +21,7 @@ export default {
   },
   data() {
     return {
-      items: mediaData,
+      items: alphaMediaData,
       str: '',
       type: '',
     };
