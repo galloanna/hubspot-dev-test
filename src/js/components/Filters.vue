@@ -4,18 +4,18 @@
     <div class="upper-filters">
       <div class="categories">
         <div class="category">
-          <button class="category-header" @click="showGenresDropdown()">Genre</button>
-          <div v-if="showGenres" class="options">
+          <button aria-controls="genres" aria-haspopup="true" class="category-header" @click="showGenresDropdown()" :aria-expanded="[showGenres ? true : false]">Genre</button>
+          <div id="genres" role="dialog" aria-label="Genre Options" v-if="showGenres" v-click-outside="closeGenresDropdown" class="options">
             <legend class="sr-only">Choose a genre</legend>
-            <label :for="genre" v-for="(genre, index) in genres" :key="genre">
+            <label class="option" :for="genre" v-for="(genre, index) in genres" :key="genre">
               <input :id="index" :value="genre" name="genre" type="checkbox" v-model="selectedGenres" />
               {{ genre }}</label
             >
           </div>
         </div>
         <div class="category">
-          <button class="category-header" @click="showYearsDropdown()">Year</button>
-          <div v-if="showYears" class="options">
+          <button aria-controls="years" aria-haspopup="true" class="category-header" @click="showYearsDropdown()" :aria-expanded="[showYears ? true : false]">Year</button>
+          <div id="years" role="dialog" aria-label="Year Options" v-if="showYears" v-click-outside="closeYearsDropdown" class="options">
             <legend class="sr-only">Choose a year</legend>
             <label class="option" :for="year" v-for="(year, index) in years" :key="year">
               <input :id="index" :value="year" name="genre" type="checkbox" v-model="selectedYears" />
@@ -29,23 +29,27 @@
     </div>
     <div class="lower-filters">
       <div class="type">
-      <legend class="sr-only">Choose a media type</legend>
-      <label class="option" :for="filter" v-for="filter in typeFilters" :key="filter">
-        <input type="radio" :id="filter" name="mediaType" @change="() => filterItemsByType(filter)" />{{
-          filter
-        }}</label
-      >
-</div>
+        <legend class="sr-only">Choose a media type</legend>
+        <label class="option" :for="filter" v-for="filter in typeFilters" :key="filter">
+          <input type="radio" :id="filter" name="mediaType" @change="() => filterItemsByType(filter)" />{{
+            filter
+          }}</label
+        >
+      </div>
       <button @click="resetItems">Clear Filters</button>
     </div>
   </div>
 </template>
 
 <script>
+import vClickOutside from 'click-outside-vue3';
 const typeFilters = ['book', 'movie'];
 
 export default {
   props: ['filterItemsByType', 'search', 'filteredItems', 'resetItems', 'items'],
+  directives: {
+    clickOutside: vClickOutside.directive,
+  },
   data() {
     return {
       typeFilters,
@@ -149,11 +153,18 @@ export default {
   flex-direction: column;
   position: absolute;
   background-color: $white;
-  width: 150px;
   margin-top: 50px;
+  border: 1px solid $light-gray;
+  max-height: 350px;
+  overflow-y: scroll;
+  text-transform: uppercase;
+  font-size: 14px;
 }
 
 .option {
-  padding: 10px 25px;
+  padding: 10px;
+  &:not(:last-child) {
+    border-bottom: 1px solid $light-gray;
+  }
 }
 </style>
