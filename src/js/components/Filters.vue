@@ -1,6 +1,6 @@
 <template>
   <div class="filters">
-    <!-- {{ filteredResults }} -->
+    {{ filteredResults }}
     <h2 class="sr-only">Filters</h2>
     <div class="filters--upper">
       <div class="filters__categories">
