@@ -252,6 +252,7 @@ export default {
       }
     }
     &-option {
+      cursor: pointer;
       padding: 10px;
       &:not(:last-child) {
         border-bottom: 1px solid $light-gray;
