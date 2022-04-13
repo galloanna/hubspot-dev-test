@@ -5,10 +5,11 @@
       :filterItemsByType="filterItemsByType"
       :search="search"
       :filteredItems="filteredItems"
-      :resetItems="resetItems"
+      @resetItems="resetItems"
       :items="this.items"
+      @updateFilter="updateFilter"
     />
-    <Items :items="items" />
+    <Items :items="filteredItems.length ? filteredItems : items" />
   </div>
 </template>
 
@@ -25,6 +26,7 @@ export default {
   data() {
     return {
       items: [],
+      filteredItems: [],
       str: '',
       type: '',
     };
@@ -34,6 +36,10 @@ export default {
     console.log('what are the items', this.items);
   },
   methods: {
+    updateFilter(filteredResults) {
+      console.log('FILTERED RESULTS IN PARENT', filteredResults)
+      this.filteredItems = filteredResults;
+    },
     filterItemsByType(mediaType) {
       this.resetItems();
       this.items = this.items.filter((item) => {
@@ -47,7 +53,7 @@ export default {
       });
     },
     resetItems() {
-      // this.items = items;
+      this.filteredItems = [];
     },
     async getData() {
       try {
@@ -76,4 +82,4 @@ export default {
   flex-direction: column;
   padding: 15px;
 }
-</style>
+</style> 
