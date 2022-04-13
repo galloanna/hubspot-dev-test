@@ -22,6 +22,7 @@ export default {
 .media-container {
   border-top: 1px solid $light-gray;
   margin-top: 20px;
+  font-family: 'Montserrat';
 }
 .media-items {
   color: $dark-gray;
