@@ -1,5 +1,6 @@
 <template>
   <div class="filters">
+    {{ filteredResults }}
     <h2 class="sr-only">Filters</h2>
     <div class="upper-filters">
       <div class="categories">
@@ -11,7 +12,9 @@
             @click="showGenresDropdown()"
             :aria-expanded="[showGenres ? true : false]"
           >
-            Genre
+            <span v-if="genresLength > 1">{{ genresLength }} Genres</span>
+            <span v-else-if="genresLength == 1">{{ genresLength }} Genre</span>
+            <span v-else>Genre</span>
           </button>
           <div
             id="genres"
@@ -36,7 +39,9 @@
             @click="showYearsDropdown()"
             :aria-expanded="[showYears ? true : false]"
           >
-            Year
+            <span v-if="yearsLength > 1">{{ yearsLength }} Years</span>
+            <span v-else-if="yearsLength == 1">{{ yearsLength }} Year</span>
+            <span v-else>Year</span>
           </button>
           <div
             id="years"
@@ -106,6 +111,23 @@ export default {
       showGenres: false,
       showYears: false,
     };
+  },
+  computed: {
+    filteredResults() {
+      const selectedGenres = this.selectedGenres;
+      const selectedYears = this.selectedYears;
+      return selectedGenres.length + selectedYears.length > 0
+        ? this.items.filter(
+            (item) => selectedGenres.some((i) => item.genre.includes(i)) || selectedYears.includes(item.year)
+          )
+        : this.items;
+    },
+    genresLength() {
+      return this.selectedGenres.length;
+    },
+    yearsLength() {
+      return this.selectedYears.length;
+    },
   },
   methods: {
     showGenresDropdown() {
@@ -179,7 +201,7 @@ export default {
   @include xsmall {
     min-width: 50%;
   }
-      @include medium {
+  @include medium {
     min-width: 150px;
   }
   &:not(:last-child) {
@@ -254,7 +276,7 @@ export default {
   @include xsmall {
     width: calc(100vw - 70px);
   }
-    @include small {
+  @include small {
     width: calc(100vw - 70px);
   }
   @include medium {
