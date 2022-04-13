@@ -71,9 +71,14 @@
         <legend class="sr-only">Choose a media type</legend>
         <!-- Whyyyy won't you receive tab focus? >=( -->
         <label tabindex="0" class="type-label" :for="filter" v-for="filter in typeFilters" :key="filter">
-          <input tabindex="0" class="type-input" type="radio" :id="filter" name="mediaType" @change="() => filterItemsByType(filter.toLowerCase().slice(0, -1))" />{{
-            filter
-          }}</label
+          <input
+            tabindex="0"
+            class="type-input"
+            type="radio"
+            :id="filter"
+            name="mediaType"
+            @change="() => filterItemsByType(filter.toLowerCase().slice(0, -1))"
+          />{{ filter }}</label
         >
       </div>
       <button class="clear-filters" @click="resetItems">Clear Filters</button>
@@ -83,7 +88,7 @@
 
 <script>
 import vClickOutside from 'click-outside-vue3';
-const typeFilters = ['Movies','Books'];
+const typeFilters = ['Movies', 'Books'];
 
 export default {
   props: ['filterItemsByType', 'search', 'filteredItems', 'resetItems', 'items'],
@@ -137,11 +142,17 @@ export default {
 <style lang="scss">
 @import '../../styles/index.scss';
 .filters {
-  margin: 15px;
+  @include xsmall {
+    margin: 0px;
+  }
+  @include large {
+    margin: 15px;
+  }
 }
 .upper-filters,
 .lower-filters {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
@@ -153,17 +164,31 @@ export default {
   display: flex;
   font-weight: 700;
   color: $medium-gray;
+  width: calc(100% - 20px);
+  margin-bottom: 20px;
+  @include medium {
+    width: 150px;
+    margin-bottom: 0;
+  }
 }
 
 .category {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  @include xsmall {
+    min-width: 50%;
+  }
+      @include medium {
+    min-width: 150px;
+  }
   &:not(:last-child) {
     margin-right: 20px;
   }
+
   &-header {
     background-color: $soft-white;
-    width: 150px;
+    width: 100%;
     border: 0;
     box-shadow: 0 3px $light-gray;
     padding: 10px;
@@ -225,11 +250,21 @@ export default {
   position: relative;
   font-family: 'Montserrat';
   color: $dark-gray;
-padding: 10px;
+  padding: 10px;
+  @include xsmall {
+    width: calc(100vw - 70px);
+  }
+    @include small {
+    width: calc(100vw - 70px);
+  }
+  @include medium {
+    width: auto;
+  }
 }
 
 .clear-filters {
-    -webkit-appearance: none;
+  align-self: flex-end;
+  -webkit-appearance: none;
   -moz-appearance: none;
   background-color: transparent;
   text-decoration: underline;
@@ -239,7 +274,6 @@ padding: 10px;
   font-weight: 700;
   border: 0;
   cursor: pointer;
-
 }
 .type {
   display: flex;
@@ -248,7 +282,7 @@ padding: 10px;
 .type-label {
   font-weight: 700;
   &:not(:last-child) {
-  margin-right: 10px;
+    margin-right: 10px;
   }
   &::first-letter {
     text-transform: uppercase;

@@ -61,10 +61,15 @@ export default {
 <style lang="scss" scoped>
 @import '../styles/index.scss';
 .exercise-2 {
+  @include xsmall {
+    margin: 10px;
+  }
+  @include large {
+    margin: 30px;
+  }
   border: 1px solid $light-gray;
   display: flex;
   flex-direction: column;
-  margin: 30px;
   padding: 15px;
 }
 </style>
