@@ -42,7 +42,6 @@ export default {
     gap: 25px;
   }
 }
-
 .media-item__poster {
   width: 100%;
 }
