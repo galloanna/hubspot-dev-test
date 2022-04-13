@@ -5,7 +5,12 @@
       <div class="media-item" v-for="item in items" :key="item.id">
         <img class="media-item__poster" :src="item.poster" :alt="item.title + ' poster'" />
         <h3 class="media-item__title">{{ item.title }} ({{ item.year }})</h3>
-        <h4 class="media-item__genres">Genres: {{ item.genre.join(', ') }}</h4>
+        <h4 class="media-item__genres">
+          Genres:
+          <span v-for="(genre, index) in item.genre" :key="genre">
+            {{ genre.charAt(0).toUpperCase() + genre.substr(1) }}<span v-if="index + 1 < item.genre.length">, </span>
+          </span>
+        </h4>
       </div>
     </div>
   </div>

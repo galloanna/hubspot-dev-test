@@ -88,7 +88,7 @@
             :value="type"
             name="type"
             v-model="selectedTypes"
-          />{{ type }}</label
+          />{{ type.charAt(0).toUpperCase() + type.substr(1) + 's' }}</label
         >
       </div>
       <button class="filters__clear-button" @click="resetFilters">Clear Filters</button>
@@ -173,6 +173,13 @@ export default {
       this.selectedYears = [];
       this.selectedTypes = [];
       this.$emit('resetItems');
+    },
+  },
+  filters: {
+    capitalize: function (value) {
+      if (!value) return '';
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
     },
   },
   created() {
