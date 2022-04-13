@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="media-container">
     <h1 class="sr-only">Available Media</h1>
     <div class="media-items">
       <div class="media-item" v-for="item in items" :key="item.id">
@@ -19,8 +19,13 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../styles/index.scss';
+.media-container {
+  border-top: 1px solid $light-gray;
+  margin-top: 20px;
+}
 .media-items {
   color: $dark-gray;
+  margin-top: 15px;
   @include xsmall {
     display: grid;
     grid-template-columns: 1fr;
@@ -29,12 +34,12 @@ export default {
   @include medium {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 15px;
   }
   @include large {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
+    gap: 25px;
   }
 }
 
