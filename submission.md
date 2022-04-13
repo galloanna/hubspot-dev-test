@@ -24,4 +24,7 @@ I ran into significant issues with Parcel caching/HMR failing while trying to wo
 
 I'm on a PC using WSL so I'm not sure if it's related to that. Google makes it seem like this is a common bug, and that a workaround is killing the process and manually deleting the `.parcel-cache` folder when the problem flares up. This did the trick, but was a bit tedious, and made some of the more detailed styling tasks very difficult to work on.
 
-Because I'm applying for an accessibility role, I also tried to do a thorough job of manually testing keyboard nav and screen reader output. If I were looking to remedy everything axe flagged, I would have also adjusted a few DOM elements and colors, but I tried to find a good balance of doing the best I could while remaining while respecting the tasks outlined in the prompt.
+Because I'm applying for an accessibility role, I also tried to do a thorough job of manually testing keyboard nav and screen reader output. If I were looking to remedy everything axe flagged, I would have also adjusted a few DOM elements and colors, but I tried to find a good balance of doing the best I could while respecting the tasks outlined in the prompt.
+
+Also, this is real footage of me being hyped about accesibility development.
+![Woman enthusiastically dancing at a convert](https://media0.giphy.com/media/ZdFxoPhIS4glG/giphy.gif?cid=ecf05e47wx559v5xjt3w7gjgh6s0sx6rtyl0sjewfil91pyb&rid=giphy.gif&ct=g)
