@@ -23,6 +23,7 @@
             v-click-outside="closeGenresDropdown"
             class="filters__category-options"
             :class="[showGenres ? 'filters__category-options--active' : '']"
+            z-index="1"
           >
             <legend class="sr-only">Choose a genre</legend>
             <label class="filters__category-option" :for="index" v-for="(genre, index) in genres" :key="genre">
@@ -51,6 +52,7 @@
             v-click-outside="closeYearsDropdown"
             class="filters__category-options"
             :class="[showYears ? 'filters__category-options--active' : '']"
+            z-index="1"
           >
             <legend class="sr-only">Choose a year</legend>
             <label class="filters__category-option" :for="index" v-for="(year, index) in years" :key="year">
@@ -69,6 +71,7 @@
           v-model="term"
           @keypress.enter="search(term)"
           placeholder="Search"
+          :z-index="[showGenresDropdown || showYearsDropdown ? -1 : 1]"
         />
       </form>
     </div>
@@ -132,8 +135,8 @@ export default {
   },
   watch: {
     filteredResults() {
-      this.$emit('updateFilter', this.filteredResults)
-    }
+      this.$emit('updateFilter', this.filteredResults);
+    },
   },
   methods: {
     showGenresDropdown() {
@@ -262,17 +265,21 @@ export default {
     }
     &-option {
       cursor: pointer;
+      font-family: 'Montserrat';
       padding: 10px;
       &:not(:last-child) {
         border-bottom: 1px solid $light-gray;
       }
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         background-color: $soft-white;
       }
     }
   }
   &__types {
     margin-top: 20px;
+    font-family: 'Montserrat';
+    font-size: 14px;
   }
   &__type {
     display: flex;
@@ -310,10 +317,14 @@ export default {
   height: 100%;
   border-radius: 2px;
   position: relative;
-  font-family: 'Montserrat';
-  font-size: 14px;
-  color: $dark-gray;
   padding: 10px;
+  &::placeholder {
+    font-family: 'Montserrat';
+    font-size: 14px;
+    color: $dark-gray;
+    font-weight: 700;
+  }
+
   @include xsmall {
     width: calc(100vw - 70px);
   }

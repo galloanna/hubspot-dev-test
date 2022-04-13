@@ -1,14 +1,15 @@
 // Adapted (for probably the 30th time in the past 3 years) from the magical Stephanie Eckles - moderncss.dev/pure-css-custom-checkbox-style/
 
-
-label > input[type='checkbox'] {
+input[type='checkbox'] {
   /* Add if not using autoprefixer */
   -webkit-appearance: none;
+  /* Remove most all native input styles */
   appearance: none;
-  /* For iOS < 15 to remove gradient background */
-  background-color: #fff;
+  /* For iOS < 15 */
+  background-color: white;
   /* Not removed via appearance */
   margin: 0 10px 0 0;
+
   font: inherit;
   color: currentColor;
   width: 1.15em;
@@ -17,29 +18,28 @@ label > input[type='checkbox'] {
   border-radius: 0.15em;
   transform: translateY(-0.075em);
 
+  display: grid;
+  place-content: center;
 }
-
-input[type="checkbox"]::before {
-    content: "";
-    width: 0.75em;
-    height: 0.75em;
-    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-    transform: scale(0);
-    transform-origin: bottom left;
-    transition: 120ms transform ease-in-out;
-    box-shadow: inset 1em 1em $dark-gray;
-  }
 
 label > input[type='checkbox']:checked::before {
+  content: '';
+  width: 0.75em;
+  height: 0.75em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
   transform: scale(1);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em #555;
+  /* Windows High Contrast Mode */
+  background-color: CanvasText;
 }
 
-label > input[type='checkbox']:focus {
+input[type='checkbox']:focus {
   outline: max(2px, 0.15em) solid currentColor;
   outline-offset: max(2px, 0.15em);
 }
 
-
 .filters__category-option {
-    display: flex;
+  display: flex;
 }
