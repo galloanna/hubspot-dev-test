@@ -4,8 +4,23 @@
     <div class="upper-filters">
       <div class="categories">
         <div class="category">
-          <button aria-controls="genres" aria-haspopup="true" class="category-header" @click="showGenresDropdown()" :aria-expanded="[showGenres ? true : false]">Genre</button>
-          <div id="genres" role="dialog" aria-label="Genre Options" v-if="showGenres" v-click-outside="closeGenresDropdown" class="options">
+          <button
+            aria-controls="genres"
+            aria-haspopup="true"
+            class="category-header"
+            @click="showGenresDropdown()"
+            :aria-expanded="[showGenres ? true : false]"
+          >
+            Genre
+          </button>
+          <div
+            id="genres"
+            role="dialog"
+            aria-label="Genre Options"
+            v-if="showGenres"
+            v-click-outside="closeGenresDropdown"
+            class="options"
+          >
             <legend class="sr-only">Choose a genre</legend>
             <label class="option" :for="genre" v-for="(genre, index) in genres" :key="genre">
               <input :id="index" :value="genre" name="genre" type="checkbox" v-model="selectedGenres" />
@@ -14,8 +29,23 @@
           </div>
         </div>
         <div class="category">
-          <button aria-controls="years" aria-haspopup="true" class="category-header" @click="showYearsDropdown()" :aria-expanded="[showYears ? true : false]">Year</button>
-          <div id="years" role="dialog" aria-label="Year Options" v-if="showYears" v-click-outside="closeYearsDropdown" class="options">
+          <button
+            aria-controls="years"
+            aria-haspopup="true"
+            class="category-header"
+            @click="showYearsDropdown()"
+            :aria-expanded="[showYears ? true : false]"
+          >
+            Year
+          </button>
+          <div
+            id="years"
+            role="dialog"
+            aria-label="Year Options"
+            v-if="showYears"
+            v-click-outside="closeYearsDropdown"
+            class="options"
+          >
             <legend class="sr-only">Choose a year</legend>
             <label class="option" :for="year" v-for="(year, index) in years" :key="year">
               <input :id="index" :value="year" name="genre" type="checkbox" v-model="selectedYears" />
@@ -24,8 +54,16 @@
           </div>
         </div>
       </div>
-      <label for="search" class="sr-only">Search</label>
-      <input id="search" v-model="term" @keypress.enter="search(term)" />
+      <form role="search">
+        <input
+          class="search"
+          aria-label="Search"
+          type="search"
+          id="search"
+          v-model="term"
+          @keypress.enter="search(term)"
+        />
+      </form>
     </div>
     <div class="lower-filters">
       <div class="type">
@@ -166,5 +204,14 @@ export default {
   &:not(:last-child) {
     border-bottom: 1px solid $light-gray;
   }
+}
+
+.search {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid $light-gray;
+  height: 100%;
+  border-radius: 2px;
+  position: relative;
 }
 </style>
