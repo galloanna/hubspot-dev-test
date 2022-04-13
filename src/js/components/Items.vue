@@ -5,7 +5,7 @@
       <div class="media-item" v-for="item in items" :key="item.id">
         <img class="media-item__poster" :src="item.poster" :alt="item.title + ' poster'" />
         <h3 class="media-item__title">{{ item.title }} ({{ item.year }})</h3>
-        <h4 class="media-item__genres">Genres: {{ item.genre.join(", ") }}</h4>
+        <h4 class="media-item__genres">Genres: {{ item.genre.join(', ') }}</h4>
       </div>
     </div>
   </div>
@@ -18,11 +18,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../styles/index.scss';
 .media-items {
+  color: $dark-gray;
+  @include xsmall {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  @include medium {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  @include large {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
   }
+}
 
 .media-item__poster {
   width: 100%;
