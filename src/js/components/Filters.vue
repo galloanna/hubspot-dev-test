@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="filters">
     <h2 class="sr-only">Filters</h2>
     <div class="upper-filters">
       <div class="categories">
@@ -22,7 +22,7 @@
             class="options"
           >
             <legend class="sr-only">Choose a genre</legend>
-            <label class="option" :for="genre" v-for="(genre, index) in genres" :key="genre">
+            <label class="option" :for="index" v-for="(genre, index) in genres" :key="genre">
               <input :id="index" :value="genre" name="genre" type="checkbox" v-model="selectedGenres" />
               {{ genre }}</label
             >
@@ -47,7 +47,7 @@
             class="options"
           >
             <legend class="sr-only">Choose a year</legend>
-            <label class="option" :for="year" v-for="(year, index) in years" :key="year">
+            <label class="option" :for="index" v-for="(year, index) in years" :key="year">
               <input :id="index" :value="year" name="genre" type="checkbox" v-model="selectedYears" />
               {{ year }}</label
             >
@@ -62,26 +62,28 @@
           id="search"
           v-model="term"
           @keypress.enter="search(term)"
+          placeholder="Search"
         />
       </form>
     </div>
     <div class="lower-filters">
       <div class="type">
         <legend class="sr-only">Choose a media type</legend>
-        <label class="option" :for="filter" v-for="filter in typeFilters" :key="filter">
-          <input type="radio" :id="filter" name="mediaType" @change="() => filterItemsByType(filter)" />{{
+        <!-- Whyyyy won't you receive tab focus? >=( -->
+        <label tabindex="0" class="type-label" :for="filter" v-for="filter in typeFilters" :key="filter">
+          <input tabindex="0" class="type-input" type="radio" :id="filter" name="mediaType" @change="() => filterItemsByType(filter.toLowerCase().slice(0, -1))" />{{
             filter
           }}</label
         >
       </div>
-      <button @click="resetItems">Clear Filters</button>
+      <button class="clear-filters" @click="resetItems">Clear Filters</button>
     </div>
   </div>
 </template>
 
 <script>
 import vClickOutside from 'click-outside-vue3';
-const typeFilters = ['book', 'movie'];
+const typeFilters = ['Movies','Books'];
 
 export default {
   props: ['filterItemsByType', 'search', 'filteredItems', 'resetItems', 'items'],
@@ -134,10 +136,17 @@ export default {
 
 <style lang="scss">
 @import '../../styles/index.scss';
+.filters {
+  margin: 15px;
+}
 .upper-filters,
 .lower-filters {
   display: flex;
   justify-content: space-between;
+}
+
+.lower-filters {
+  margin-top: 10px;
 }
 
 .categories {
@@ -168,6 +177,7 @@ export default {
     text-transform: uppercase;
     -webkit-appearance: none;
     -moz-appearance: none;
+    cursor: pointer;
     &:after {
       content: '';
       height: 8px;
@@ -213,5 +223,39 @@ export default {
   height: 100%;
   border-radius: 2px;
   position: relative;
+  font-family: 'Montserrat';
+  color: $dark-gray;
+padding: 10px;
+}
+
+.clear-filters {
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  text-decoration: underline;
+  color: $blue;
+  font-family: 'Montserrat';
+  text-transform: uppercase;
+  font-weight: 700;
+  border: 0;
+  cursor: pointer;
+
+}
+.type {
+  display: flex;
+  cursor: pointer;
+}
+.type-label {
+  font-weight: 700;
+  &:not(:last-child) {
+  margin-right: 10px;
+  }
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+.type-input {
+  margin: 0 5px 0 0;
+  padding: 0;
 }
 </style>
