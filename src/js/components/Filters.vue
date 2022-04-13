@@ -23,6 +23,7 @@
             v-if="showGenres"
             v-click-outside="closeGenresDropdown"
             class="filters__category-options"
+            :class="[showGenres ? 'filters__category-options--active' : '']"
           >
             <legend class="sr-only">Choose a genre</legend>
             <label class="filters__category-option" :for="index" v-for="(genre, index) in genres" :key="genre">
@@ -50,6 +51,7 @@
             v-if="showYears"
             v-click-outside="closeYearsDropdown"
             class="filters__category-options"
+            :class="[showYears ? 'filters__category-options--active' : '']"
           >
             <legend class="sr-only">Choose a year</legend>
             <label class="filters__category-option" :for="index" v-for="(year, index) in years" :key="year">
@@ -243,11 +245,19 @@ export default {
       overflow-y: scroll;
       text-transform: uppercase;
       font-size: 14px;
+      opacity: 0;
+      transition: all 0.2s linear;
+      &--active {
+        opacity: 1;
+      }
     }
     &-option {
       padding: 10px;
       &:not(:last-child) {
         border-bottom: 1px solid $light-gray;
+      }
+      &:hover, &:focus {
+        background-color: $soft-white;
       }
     }
   }
