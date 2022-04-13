@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="media-container">
     <h1 class="sr-only">Available Media</h1>
     <div class="media-items">
       <div class="media-item" v-for="item in items" :key="item.id">
-        <img class="media-item__poster" :src="item.poster" />
+        <img class="media-item__poster" :src="item.poster" :alt="item.title + ' poster'" />
         <h3 class="media-item__title">{{ item.title }} ({{ item.year }})</h3>
-        <h4 class="media-item__genres">Genres: {{ item.genre }}</h4>
+        <h4 class="media-item__genres">Genres: {{ item.genre.join(', ') }}</h4>
       </div>
     </div>
   </div>
@@ -18,13 +18,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../styles/index.scss';
+.media-container {
+  border-top: 1px solid $light-gray;
+  margin-top: 20px;
+}
 .media-items {
+  color: $dark-gray;
+  margin-top: 15px;
+  @include xsmall {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 10px;
   }
-.media-item {
-  width: 30%;
+  @include medium {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  @include large {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 25px;
+  }
 }
 
 .media-item__poster {

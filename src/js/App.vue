@@ -1,6 +1,13 @@
 <template>
-  <div>
-    <Filters :filterItems="filterItems" :search="search" :filteredItems="filteredItems" />
+  <div class="exercise-2">
+    <Filters
+      v-if="this.items.length"
+      :filterItemsByType="filterItemsByType"
+      :search="search"
+      :filteredItems="filteredItems"
+      :resetItems="resetItems"
+      :items="this.items"
+    />
     <Items :items="items" />
   </div>
 </template>
@@ -11,6 +18,7 @@ import Items from './components/Items.vue';
 
 import dataSet from './data/data.json';
 const mediaData = dataSet.media;
+const alphaMediaData = mediaData.sort((a, b) => (a.title < b.title ? -1 : 1));
 
 export default {
   name: 'App',
@@ -20,19 +28,22 @@ export default {
   },
   data() {
     return {
-      items: mediaData,
+      items: alphaMediaData,
       str: '',
       type: '',
     };
   },
+
+  created() {
+    console.log('what are the items', this.items);
+  },
+
   methods: {
-    filterItems(mediaType) {
+    filterItemsByType(mediaType) {
       this.resetItems();
-      if (mediaType !== 'All') {
-        this.items = this.items.filter((item) => {
-          return item.type === mediaType;
-        });
-      }
+      this.items = this.items.filter((item) => {
+        return item.type === mediaType;
+      });
     },
     search(term) {
       this.resetItems();
@@ -46,3 +57,19 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import '../styles/index.scss';
+.exercise-2 {
+  @include xsmall {
+    margin: 10px;
+  }
+  @include large {
+    margin: 30px;
+  }
+  border: 1px solid $light-gray;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+</style>
