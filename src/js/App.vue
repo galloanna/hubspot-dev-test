@@ -2,7 +2,6 @@
   <div class="media">
     <Filters
       v-if="this.items.length"
-      :filterItemsByType="filterItemsByType"
       :search="search"
       :filteredItems="filteredItems"
       @resetItems="resetItems"
@@ -29,7 +28,6 @@ export default {
       items: [],
       filteredItems: [],
       str: '',
-      type: '',
     };
   },
   created() {
@@ -40,12 +38,6 @@ export default {
     updateFilter(filteredResults) {
       console.log('FILTERED RESULTS IN PARENT', filteredResults);
       this.filteredItems = filteredResults;
-    },
-    filterItemsByType(mediaType) {
-      this.resetItems();
-      this.items = this.allItems.filter((item) => {
-        return item.type === mediaType;
-      });
     },
     search(term) {
       this.resetItems();

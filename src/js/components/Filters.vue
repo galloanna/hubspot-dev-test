@@ -79,15 +79,16 @@
       <div class="filters__types">
         <legend class="sr-only">Choose a media type</legend>
         <!-- Whyyyy won't you receive tab focus? >=( -->
-        <label tabindex="0" class="filters__type-label" :for="filter" v-for="filter in typeFilters" :key="filter">
+        <label tabindex="0" class="filters__type-label" :for="filter" v-for="(type, index) in types" :key="type">
           <input
             tabindex="0"
             class="filters__type-input"
             type="radio"
-            :id="filter"
-            name="mediaType"
-            @change="() => filterItemsByType(filter.toLowerCase().slice(0, -1))"
-          />{{ filter }}</label
+            :id="index"
+            :value="type"
+            name="type"
+            v-model="selectedTypes"
+          />{{ type }}</label
         >
       </div>
       <button class="filters__clear-button" @click="resetFilters">Clear Filters</button>
@@ -97,21 +98,21 @@
 
 <script>
 import vClickOutside from 'click-outside-vue3';
-const typeFilters = ['Movies', 'Books'];
 
 export default {
-  props: ['filterItemsByType', 'search', 'filteredItems', 'resetItems', 'items'],
+  props: ['search', 'filteredItems', 'resetItems', 'items'],
   directives: {
     clickOutside: vClickOutside.directive,
   },
   data() {
     return {
-      typeFilters,
       term: '',
       genres: [],
       years: [],
+      types: ['movie', 'book'],
       selectedGenres: [],
       selectedYears: [],
+      selectedTypes: [],
       showGenres: false,
       showYears: false,
     };
@@ -127,10 +128,20 @@ export default {
       const selectedYears = this.selectedYears;
       return selectedYears.length > 0 ? this.items.filter((item) => selectedYears.includes(item.year)) : this.items;
     },
-    filteredResults() {
+    filteredTypes() {
+      const selectedTypes = this.selectedTypes;
+      return selectedTypes.length > 0 ? this.items.filter((item) => selectedTypes.includes(item.type)) : this.items;
+    },
+    filteredChecks() {
       let arrA = this.filteredGenres;
       let arrB = this.filteredYears;
       return arrA.filter((x) => arrB.includes(x));
+    },
+    filteredResults() {
+      let arrA = this.filteredChecks;
+      let arrB = this.filteredTypes;
+      // return arrA.filter((x) => arrB.includes(x));
+      return this.selectedTypes.length > 0 ? arrA.filter((x) => arrB.includes(x)) : arrA;
     },
     genresLength() {
       return this.selectedGenres.length;
@@ -160,6 +171,7 @@ export default {
     resetFilters() {
       this.selectedGenres = [];
       this.selectedYears = [];
+      this.selectedTypes = [];
       this.$emit('resetItems');
     },
   },
