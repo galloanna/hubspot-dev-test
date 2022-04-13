@@ -16,10 +16,6 @@
 import Filters from './components/Filters.vue';
 import Items from './components/Items.vue';
 
-import dataSet from './data/data.json';
-const mediaData = dataSet.media;
-const alphaMediaData = mediaData.sort((a, b) => (a.title < b.title ? -1 : 1));
-
 export default {
   name: 'App',
   components: {
@@ -28,16 +24,15 @@ export default {
   },
   data() {
     return {
-      items: alphaMediaData,
+      items: [],
       str: '',
       type: '',
     };
   },
-
   created() {
+    this.getData();
     console.log('what are the items', this.items);
   },
-
   methods: {
     filterItemsByType(mediaType) {
       this.resetItems();
@@ -52,7 +47,16 @@ export default {
       });
     },
     resetItems() {
-      this.items = mediaData;
+      // this.items = items;
+    },
+    async getData() {
+      try {
+        let response = await fetch("https://raw.githubusercontent.com/HubSpotWebTeam/CodeExercise/main/src/js/data/data.json");
+        this.items = await response.json();
+        this.items = this.items.media;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
