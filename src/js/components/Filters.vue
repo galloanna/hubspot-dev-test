@@ -175,13 +175,6 @@ export default {
       this.$emit('resetItems');
     },
   },
-  filters: {
-    capitalize: function (value) {
-      if (!value) return '';
-      value = value.toString();
-      return value.charAt(0).toUpperCase() + value.slice(1);
-    },
-  },
   created() {
     // gets all unique genres and puts in array
     const all = this.items.map((m) => m.genre);

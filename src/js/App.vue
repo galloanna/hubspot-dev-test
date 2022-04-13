@@ -24,7 +24,6 @@ export default {
   },
   data() {
     return {
-      allItems: [],
       items: [],
       filteredItems: [],
       str: '',
@@ -41,12 +40,11 @@ export default {
     },
     search(term) {
       this.resetItems();
-      this.items = this.allItems.filter((item) => {
+      this.filteredItems = this.items.filter((item) => {
         return item.title.toLowerCase().includes(term.toLowerCase());
       });
     },
     resetItems() {
-      this.items = this.allItems;
       this.filteredItems = [];
     },
     async getData() {
@@ -55,8 +53,7 @@ export default {
           'https://raw.githubusercontent.com/HubSpotWebTeam/CodeExercise/main/src/js/data/data.json'
         );
         this.items = await response.json();
-        this.allItems = this.items.media;
-        this.items = this.allItems;
+        this.items = this.items.media;
       } catch (error) {
         console.log(error);
       }
