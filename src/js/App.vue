@@ -1,5 +1,5 @@
 <template>
-  <div class="exercise-2">
+  <div class="media">
     <Filters
       v-if="this.items.length"
       :filterItemsByType="filterItemsByType"
@@ -64,7 +64,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../styles/index.scss';
-.exercise-2 {
+.media {
   @include xsmall {
     margin: 10px;
   }

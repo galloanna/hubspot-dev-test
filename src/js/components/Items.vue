@@ -42,8 +42,12 @@ export default {
     gap: 25px;
   }
 }
-
-.media-item__poster {
-  width: 100%;
+.media-item {
+  &__poster {
+    width: 100%;
+  }
+  &__genres {
+    margin-top: -10px;
+  }
 }
 </style>
