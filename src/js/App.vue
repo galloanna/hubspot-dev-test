@@ -25,6 +25,7 @@ export default {
   },
   data() {
     return {
+      allItems: [],
       items: [],
       filteredItems: [],
       str: '',
@@ -37,29 +38,33 @@ export default {
   },
   methods: {
     updateFilter(filteredResults) {
-      console.log('FILTERED RESULTS IN PARENT', filteredResults)
+      console.log('FILTERED RESULTS IN PARENT', filteredResults);
       this.filteredItems = filteredResults;
     },
     filterItemsByType(mediaType) {
       this.resetItems();
-      this.items = this.items.filter((item) => {
+      this.items = this.allItems.filter((item) => {
         return item.type === mediaType;
       });
     },
     search(term) {
       this.resetItems();
-      this.items = this.items.filter((item) => {
+      this.items = this.allItems.filter((item) => {
         return item.title.toLowerCase().includes(term.toLowerCase());
       });
     },
     resetItems() {
+      this.items = this.allItems;
       this.filteredItems = [];
     },
     async getData() {
       try {
-        let response = await fetch("https://raw.githubusercontent.com/HubSpotWebTeam/CodeExercise/main/src/js/data/data.json");
+        let response = await fetch(
+          'https://raw.githubusercontent.com/HubSpotWebTeam/CodeExercise/main/src/js/data/data.json'
+        );
         this.items = await response.json();
-        this.items = this.items.media;
+        this.allItems = this.items.media;
+        this.items = this.allItems;
       } catch (error) {
         console.log(error);
       }
