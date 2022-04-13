@@ -1,6 +1,5 @@
 <template>
   <div class="filters">
-    {{ filteredResults }}
     <h2 class="sr-only">Filters</h2>
     <div class="filters--upper">
       <div class="filters__categories">
@@ -88,7 +87,7 @@
           />{{ filter }}</label
         >
       </div>
-      <button class="filters__clear-button" @click="resetItems">Clear Filters</button>
+      <button class="filters__clear-button" @click="resetFilters">Clear Filters</button>
     </div>
   </div>
 </template>
@@ -131,6 +130,11 @@ export default {
       return this.selectedYears.length;
     },
   },
+  watch: {
+    filteredResults() {
+      this.$emit('updateFilter', this.filteredResults)
+    }
+  },
   methods: {
     showGenresDropdown() {
       this.showGenres = !this.showGenres;
@@ -143,6 +147,11 @@ export default {
     },
     closeYearsDropdown() {
       this.showYears = false;
+    },
+    resetFilters() {
+      this.selectedGenres = [];
+      this.selectedYears = [];
+      this.$emit('resetItems');
     },
   },
   created() {
@@ -302,6 +311,7 @@ export default {
   border-radius: 2px;
   position: relative;
   font-family: 'Montserrat';
+  font-size: 14px;
   color: $dark-gray;
   padding: 10px;
   @include xsmall {
