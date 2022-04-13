@@ -117,14 +117,20 @@ export default {
     };
   },
   computed: {
-    filteredResults() {
+    filteredGenres() {
       const selectedGenres = this.selectedGenres;
-      const selectedYears = this.selectedYears;
-      return selectedGenres.length + selectedYears.length > 0
-        ? this.items.filter(
-            (item) => selectedGenres.some((i) => item.genre.includes(i)) || selectedYears.includes(item.year)
-          )
+      return selectedGenres.length > 0
+        ? this.items.filter((item) => selectedGenres.some((i) => item.genre.includes(i)))
         : this.items;
+    },
+    filteredYears() {
+      const selectedYears = this.selectedYears;
+      return selectedYears.length > 0 ? this.items.filter((item) => selectedYears.includes(item.year)) : this.items;
+    },
+    filteredResults() {
+      let arrA = this.filteredGenres;
+      let arrB = this.filteredYears;
+      return arrA.filter((x) => arrB.includes(x));
     },
     genresLength() {
       return this.selectedGenres.length;
