@@ -64,5 +64,7 @@ export default {
   border: 1px solid $light-gray;
   display: flex;
   flex-direction: column;
+  margin: 30px;
+  padding: 15px;
 }
 </style>
