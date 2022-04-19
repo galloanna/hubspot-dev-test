@@ -9,6 +9,7 @@
             aria-haspopup="true"
             class="filters__category-header"
             @click="showGenresDropdown()"
+            @keydown.esc="closeGenresDropdown()"
             :aria-expanded="[showGenres ? true : false]"
           >
             <span v-if="genresLength > 1">{{ genresLength }} Genres</span>
@@ -26,7 +27,13 @@
             z-index="1"
           >
             <legend class="sr-only">Choose a genre</legend>
-            <label class="filters__category-option" :for="index" v-for="(genre, index) in genres" :key="genre">
+            <label
+              class="filters__category-option"
+              :for="index"
+              v-for="(genre, index) in genres"
+              :key="genre"
+              @keydown.esc="closeGenresDropdown()"
+            >
               <input :id="index" :value="genre" name="genre" type="checkbox" v-model="selectedGenres" />
               {{ genre }}</label
             >
@@ -38,6 +45,7 @@
             aria-haspopup="true"
             class="filters__category-header"
             @click="showYearsDropdown()"
+            @keydown.esc="closeYearsDropdown()"
             :aria-expanded="[showYears ? true : false]"
           >
             <span v-if="yearsLength > 1">{{ yearsLength }} Years</span>
@@ -55,7 +63,13 @@
             z-index="1"
           >
             <legend class="sr-only">Choose a year</legend>
-            <label class="filters__category-option" :for="index" v-for="(year, index) in years" :key="year">
+            <label
+              class="filters__category-option"
+              :for="index"
+              v-for="(year, index) in years"
+              :key="year"
+              @keydown.esc="closeYearsDropdown()"
+            >
               <input :id="index" :value="year" name="genre" type="checkbox" v-model="selectedYears" />
               {{ year }}</label
             >
