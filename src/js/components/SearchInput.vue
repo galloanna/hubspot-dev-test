@@ -15,7 +15,6 @@ export default {
             this.$emit('update:term', event.target.value);
         },
         submitSearch() {
-            // Call the search method directly and pass the search term
             this.search(this.term);
         }
     }
@@ -32,6 +31,7 @@ export default {
     border-radius: 2px;
     position: relative;
     padding: 10px;
+    z-index: -1;
     &::placeholder {
         font-family: 'Montserrat';
         font-size: 14px;
