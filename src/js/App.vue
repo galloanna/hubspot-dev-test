@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Filters from './components/Filters.vue';
+import Filters from './components/Filters/Filters.vue';
 import Items from './components/Items.vue';
 
 export default {
