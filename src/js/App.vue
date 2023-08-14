@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Filters from './components/Filters.vue';
+import Filters from './components/Filters/Filters.vue';
 import Items from './components/Items.vue';
 
 export default {
@@ -33,6 +33,7 @@ export default {
         },
         search(term) {
             this.resetItems();
+            console.log('Search for ', term, ' performed');
             this.filteredItems = this.items.filter((item) => {
                 return item.title.toLowerCase().includes(term.toLowerCase());
             });
