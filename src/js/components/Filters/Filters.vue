@@ -78,15 +78,7 @@
             </form>
         </div>
         <div class="filters--lower">
-            <div class="filters__types">
-                <legend class="sr-only">Choose a media type</legend>
-                <!-- Whyyyy won't you receive tab focus? >=( -->
-                <label tabindex="0" class="filters__type-label" :for="filter" v-for="(type, index) in types" :key="type">
-                    <input tabindex="0" class="filters__type-input" type="radio" :id="index" :value="type" name="type" v-model="selectedTypes" />{{
-                        type.charAt(0).toUpperCase() + type.substr(1) + 's'
-                    }}</label
-                >
-            </div>
+            <TypesFilter :types="types" :selectedTypes="selectedTypes" @update:selectedTypes="updateSelectedTypes" />
             <ClearButton :resetFilters="resetFilters" />
         </div>
     </div>
@@ -95,10 +87,11 @@
 <script>
 import vClickOutside from 'click-outside-vue3';
 import ClearButton from './ClearButton.vue';
+import TypesFilter from './TypesFilter.vue';
 
 export default {
     props: ['search', 'filteredItems', 'resetItems', 'items'],
-    components: { ClearButton },
+    components: { ClearButton, TypesFilter },
     directives: {
         clickOutside: vClickOutside.directive
     },
@@ -169,6 +162,9 @@ export default {
             this.selectedYears = [];
             this.selectedTypes = [];
             this.$emit('resetItems');
+        },
+        updateSelectedTypes(value) {
+            this.selectedTypes = value;
         }
     },
     created() {
@@ -288,25 +284,6 @@ export default {
             &:focus {
                 background-color: $soft-white;
             }
-        }
-    }
-    &__types {
-        margin-top: 20px;
-        font-family: 'Montserrat';
-        font-size: 14px;
-    }
-    &__type {
-        display: flex;
-        cursor: pointer;
-        &-label {
-            font-weight: 700;
-            &:not(:last-child) {
-                margin-right: 10px;
-            }
-        }
-        &-input {
-            margin: 0 5px 0 0;
-            padding: 0;
         }
     }
 }
