@@ -28,9 +28,11 @@ If you have any comments or feedback please include it in the `submission.md` fi
 
 3. By default, the project uses [Parcel](https://parceljs.org/) - a bundler that includes live reloading and a local dev server ready for you to use. Run `npm run start` to start the local dev server and you're good to go.
 
-**Note** - you're free to replace `Parcel` with your preferred bundler (e.g. Webpack, Gulp). The only requirement we ask is that running `npm install` from the command line compiles your project and running `npm run start` from the command line starts a local server where we can view your project at `localhost`.
-
-**Bonus Points**: if you add anything that improves the dev experience, e.g. unit tests, linting, etc.
+> **Note**
+>
+> You're free to replace `Parcel` with your preferred bundler (e.g. Webpack, Gulp). The only requirement we ask is that running `npm install` from the command line compiles your project and running `npm run start` from the command line starts a local server where we can view your project at `localhost`.
+>
+> **Bonus Points**: if you add anything that improves the dev experience, e.g. unit tests, linting, etc.
 
 <br />
 
@@ -52,7 +54,7 @@ Also, the bonus tasks listed are just examples, feel free to add anything you th
 
 ---
 
-### **Exercise 1 - Testimonial Block**
+### Exercise 1 - Testimonial Block
 
 The DOM structure for the following image has been included in `./src/views/index.html`.
 
@@ -75,7 +77,7 @@ Using **CSS only**, style the provided HTML to match the design in the below ima
 
 ---
 
-### **Exercise 2 - Filterable Content**
+### Exercise 2 - Filterable Content
 
 Create the following interface using HTML, CSS & Javascript:
 
@@ -106,7 +108,8 @@ Close up of dropdown:
 - Add fuzzy search to the search field.
 - Anything that improves the experience for the user.
 
-**Note** - if you have any issue retrieving the data from the endpoint, we've included the JSON data locally in `/src/js/data/data.json`. If you end up using this instead of the API, please explain why in the `submission.md` file.
+> **Note** 
+> If you have any issue retrieving the data from the endpoint, we've included the JSON data locally in `/src/js/data/data.json`. If you end up using this instead of the API, please explain why in the `submission.md` file.
 
 <br />
 
@@ -120,7 +123,11 @@ Fill out the `submission.md` file before submitting. If you deviated from the in
 
  Once complete, email either `(a)` **a zip of your work or** `(b)` **a link to your GitHub repository** to your recruiting specialist so they can forward it to the web team.
 
-**Note** - if you're going to host your project online, kudos to you! Please include that link in your submission - but don't forget to provide the zip/repository link so that we can take a look at your code.
+> **Note**
+>
+> If you're going to host your project online, kudos to you! Please include that link in your submission - but don't forget to provide the zip/repository link so that we can take a look at your code.
+>
+> **If you are providing a zip file**, please try to exclude the `node_modules` and `.parcel-cache` folders from it to keep the zip file small.
 
 <br />
 
@@ -130,11 +137,11 @@ Fill out the `submission.md` file before submitting. If you deviated from the in
 
 ## FAQs
 
-### **When is the assessment due?**
+### When is the assessment due?
 
 Please submit your exercise within four (4) days of receiving it. If you need extra time please reach out to your recruiting specialist.
 
-### **Which browsers should I support?**
+### Which browsers should I support?
 
 We'll look for compatibility with the following browsers:
 
@@ -143,14 +150,14 @@ We'll look for compatibility with the following browsers:
 - **Mozilla Firefox** (latest version)
 - **Microsoft Edge** (latest version)
 
-### **What color values should I use?**
+### What color values should I use?
 
 The exact color values don't matter; just try to get as close to the mockup as you can. You could also use a Chrome extension such as <a href="https://chrome.google.com/webstore/detail/colorpick-eyedropper/ohcpnigalekghcmgcdcenkpelffpdolg?hl=en" target="_blank">this color-picker</a>.
 
-### **Should I create a new page for each exercise?**
+### Should I create a new page for each exercise?
 
 No, please use a single page for all exercises. Please use the provided blue headers to separate the exercises.
 
-### **I'm running out of time, may I skip one of the exercises?**
+### I'm running out of time, may I skip one of the exercises?
 
 Although we expect you to finish all of the exercises, we understand that life happens. If you aren't able to finish on time, focus on `Exercise 2` and try to start on the other exercise. Then give us some insight as to what you would have done in the `submission.md` file.
