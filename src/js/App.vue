@@ -33,6 +33,7 @@ export default {
         },
         search(term) {
             this.resetItems();
+            console.log('Search for ', term, ' performed');
             this.filteredItems = this.items.filter((item) => {
                 return item.title.toLowerCase().includes(term.toLowerCase());
             });
