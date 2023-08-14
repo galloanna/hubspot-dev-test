@@ -64,18 +64,7 @@
                     </div>
                 </div>
             </div>
-            <form role="search">
-                <input
-                    class="search"
-                    aria-label="Search"
-                    type="search"
-                    id="search"
-                    v-model="term"
-                    @keypress.enter="search(term)"
-                    placeholder="Search"
-                    :z-index="[showGenresDropdown || showYearsDropdown ? -1 : 1]"
-                />
-            </form>
+            <SearchInput :term="term" :search="search" @update:term="updateSearchTerm" />
         </div>
         <div class="filters--lower">
             <TypesFilter :types="types" :selectedTypes="selectedTypes" @update:selectedTypes="updateSelectedTypes" />
@@ -87,11 +76,12 @@
 <script>
 import vClickOutside from 'click-outside-vue3';
 import ClearButton from './ClearButton.vue';
+import SearchInput from '../SearchInput.vue';
 import TypesFilter from './TypesFilter.vue';
 
 export default {
     props: ['search', 'filteredItems', 'resetItems', 'items'],
-    components: { ClearButton, TypesFilter },
+    components: { ClearButton, SearchInput, TypesFilter },
     directives: {
         clickOutside: vClickOutside.directive
     },
@@ -165,6 +155,9 @@ export default {
         },
         updateSelectedTypes(value) {
             this.selectedTypes = value;
+        },
+        updateSearchTerm(term) {
+            this.term = term;
         }
     },
     created() {
@@ -285,32 +278,6 @@ export default {
                 background-color: $soft-white;
             }
         }
-    }
-}
-
-.search {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    border: 1px solid $light-gray;
-    height: 100%;
-    border-radius: 2px;
-    position: relative;
-    padding: 10px;
-    &::placeholder {
-        font-family: 'Montserrat';
-        font-size: 14px;
-        color: $dark-gray;
-        font-weight: 700;
-    }
-
-    @include xsmall {
-        width: calc(100vw - 70px);
-    }
-    @include small {
-        width: calc(100vw - 70px);
-    }
-    @include medium {
-        width: auto;
     }
 }
 </style>

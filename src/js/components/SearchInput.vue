@@ -1,24 +1,22 @@
 <template>
-    <form role="search">
-        <input class="search" aria-label="Search" type="search" id="search" :value="term" @input="updateTerm" @keypress.enter="search(term)" placeholder="Search" />
+    <form role="search" @submit.prevent="submitSearch">
+        <input class="search" aria-label="Search" type="search" id="search" :value="term" @input="updateTerm" placeholder="Search" />
     </form>
 </template>
 
 <script>
 export default {
     props: {
-        term: {
-            type: String,
-            required: true
-        },
-        search: {
-            type: Function,
-            required: true
-        }
+        term: String,
+        search: Function
     },
     methods: {
         updateTerm(event) {
             this.$emit('update:term', event.target.value);
+        },
+        submitSearch() {
+            // Call the search method directly and pass the search term
+            this.search(this.term);
         }
     }
 };
