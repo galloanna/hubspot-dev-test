@@ -24,28 +24,33 @@ export default {
 };
 </script>
 
-<style lang="sass" scoped>
-@import '../../styles/index.scss'
-.search
-    -webkit-appearance: none
-    -moz-appearance: none
-    border: 1px solid $light-gray
-    height: 100%
-    border-radius: 2px
-    position: relative
-    padding: 10px
-    &::placeholder
-        font-family: 'Montserrat'
-        font-size: 14px
-        color: $dark-gray
-        font-weight: 700
+<style lang="scss" scoped>
+@import '../../styles/index.scss';
+.search {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1px solid $light-gray;
+    height: 100%;
+    border-radius: 2px;
+    position: relative;
+    padding: 10px;
+    &::placeholder {
+        font-family: 'Montserrat';
+        font-size: 14px;
+        color: $dark-gray;
+        font-weight: 700;
+    }
 
-    @include xsmall
-        width: calc(100vw - 70px)
+    @include xsmall {
+        width: calc(100vw - 70px);
+    }
 
-    @include small
-        width: calc(100vw - 70px)
+    @include small {
+        width: calc(100vw - 70px);
+    }
 
-    @include medium
-        width: auto
+    @include medium {
+        width: auto;
+    }
+}
 </style>
