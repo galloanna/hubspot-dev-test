@@ -31,7 +31,7 @@ export default {
     border-radius: 2px;
     position: relative;
     padding: 10px;
-    z-index: -1;
+
     &::placeholder {
         font-family: 'Montserrat';
         font-size: 14px;
