@@ -31,24 +31,20 @@ export default {
     border-radius: 2px;
     position: relative;
     padding: 10px;
-
-    &::placeholder {
-        font-family: 'Montserrat';
-        font-size: 14px;
-        color: $dark-gray;
-        font-weight: 700;
-    }
-
     @include xsmall {
         width: calc(100vw - 70px);
     }
-
     @include small {
         width: calc(100vw - 70px);
     }
-
     @include medium {
         width: auto;
     }
+}
+.search::placeholder {
+    font-family: 'Montserrat';
+    font-size: 14px;
+    color: $dark-gray;
+    font-weight: 700;
 }
 </style>
