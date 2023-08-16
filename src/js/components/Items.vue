@@ -2,7 +2,7 @@
     <div class="media-container">
         <h3 class="sr-only">Available Media</h3>
         <div class="media-items">
-            <div class="media-item" v-for="item in items" :key="item.id">
+            <div class="media-item" v-for="item in items" :key="item.id" data-testid="media-item">
                 <img class="media-item__poster" :src="item.poster" :alt="`${item.title} poster`" />
                 <h4 class="media-item__title">{{ item.title }} ({{ item.year }})</h4>
                 <h5 class="media-item__genres">Genres: {{ item.genre.map(capitalize).join(', ') }}</h5>

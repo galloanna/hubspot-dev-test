@@ -52,8 +52,17 @@ export default {
             return this.selectedTypes.length > 0 ? this.items.filter((item) => this.selectedTypes.includes(item.type)) : this.items;
         },
         filteredResults() {
-            const filteredChecks = this.filteredGenres.filter((item) => this.filteredYears.includes(item));
-            return this.selectedTypes.length > 0 ? filteredChecks.filter((item) => this.filteredTypes.includes(item)) : filteredChecks;
+            let filteredItems = this.filteredGenres.filter((item) => this.filteredYears.includes(item));
+
+            if (this.selectedTypes.length > 0) {
+                filteredItems = filteredItems.filter((item) => this.filteredTypes.includes(item));
+            }
+
+            if (this.term) {
+                filteredItems = filteredItems.filter((item) => item.title.toLowerCase().includes(this.term.toLowerCase()));
+            }
+
+            return filteredItems;
         },
         genresLength() {
             return this.selectedGenres.length;
@@ -80,6 +89,7 @@ export default {
             this.selectedGenres = [];
             this.selectedYears = [];
             this.selectedTypes = [];
+            this.term = '';
             this.$emit('resetItems');
         },
         updateSelectedTypes(value) {
@@ -87,6 +97,7 @@ export default {
         },
         updateSearchTerm(term) {
             this.term = term;
+            this.$emit('updateFilter', this.filteredResults);
         },
         updateSelectedOptions(option, selectedOptions) {
             const index = selectedOptions.indexOf(option);
@@ -103,14 +114,14 @@ export default {
         const all = this.items.map((m) => m.genre);
         const merged = [].concat(...all);
         let uniqueMerged = [...new Set(merged.sort((a, b) => (a < b ? -1 : 1)))];
-        console.log('genres', uniqueMerged);
+        // console.log('genres', uniqueMerged);
         this.genres = uniqueMerged;
 
         // gets the unique years
         const allYears = this.items.map((m) => m.year);
         const mergedYears = [].concat(...allYears);
         let uniqueMergedYears = [...new Set(mergedYears.sort((a, b) => (a < b ? -1 : 1)))];
-        console.log('years', uniqueMergedYears);
+        // console.log('years', uniqueMergedYears);
         this.years = uniqueMergedYears;
     }
 };

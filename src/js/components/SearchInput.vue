@@ -1,6 +1,6 @@
 <template>
     <form role="search" @submit.prevent="submitSearch">
-        <input class="search" aria-label="Search" type="search" id="search" :value="term" @input="updateTerm" placeholder="Search" />
+        <input class="search" aria-label="Search" type="search" id="search" :value="term" @input="updateTerm" placeholder="Search" data-testid="search" />
     </form>
 </template>
 

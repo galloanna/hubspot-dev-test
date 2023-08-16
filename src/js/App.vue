@@ -1,14 +1,14 @@
 <template>
-    <div class="media">
+    <div class="media" data-testid="media">
         <Filters v-if="this.items.length" :search="search" :filteredItems="filteredItems" @resetItems="resetItems" :items="this.items" @updateFilter="updateFilter" />
         <Items v-if="!isFiltered && filteredItems.length === 0" :items="items" />
         <Items v-else-if="isFiltered && filteredItems.length > 0" :items="filteredItems" />
-        <div v-else class="no-results-message">No results found! Try expanding your search.</div>
+        <div v-else class="no-results-message" data-testid="no-results-message">No results found! Try expanding your search.</div>
     </div>
 </template>
 
 <script>
-import Filters from './components/Filters/Filters.vue';
+import Filters from './components/filters/Filters.vue';
 import Items from './components/Items.vue';
 
 export default {
@@ -26,7 +26,7 @@ export default {
     },
     created() {
         this.getData();
-        console.log('what are the items', this.items);
+        // console.log('what are the items', this.items);
     },
     methods: {
         updateFilter(filteredResults) {
@@ -36,7 +36,7 @@ export default {
         search(term) {
             this.filteredItems = [];
             this.isFiltered = true;
-            console.log('Search for ', term, ' performed');
+            // console.log('Search for ', term, ' performed');
             this.filteredItems = this.items.filter((item) => {
                 return item.title.toLowerCase().includes(term.toLowerCase());
             });
