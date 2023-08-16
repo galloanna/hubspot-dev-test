@@ -1,11 +1,11 @@
 <template>
     <div class="media-container">
-        <h1 class="sr-only">Available Media</h1>
+        <h3 class="sr-only">Available Media</h3>
         <div class="media-items">
             <div class="media-item" v-for="item in items" :key="item.id">
                 <img class="media-item__poster" :src="item.poster" :alt="`${item.title} poster`" />
-                <h3 class="media-item__title">{{ item.title }} ({{ item.year }})</h3>
-                <h4 class="media-item__genres">Genres: {{ item.genre.map(capitalize).join(', ') }}</h4>
+                <h4 class="media-item__title">{{ item.title }} ({{ item.year }})</h4>
+                <h5 class="media-item__genres">Genres: {{ item.genre.map(capitalize).join(', ') }}</h5>
             </div>
         </div>
     </div>
@@ -48,12 +48,10 @@ export default {
         gap: 25px;
     }
 }
-.media-item {
-    &__poster {
-        width: 100%;
-    }
-    &__genres {
-        margin-top: -10px;
-    }
+.media-item__poster {
+    width: 100%;
+}
+.media-item__genres {
+    margin-top: -10px;
 }
 </style>
