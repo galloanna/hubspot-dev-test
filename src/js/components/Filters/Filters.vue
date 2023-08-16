@@ -3,10 +3,10 @@
         <h2 class="sr-only">Filters</h2>
         <div class="filters--upper">
             <div class="filters__categories">
-                <FilterCategory title="Genres" :options="genres" :selectedOptions="selectedGenres" @update:selectedOptions="updateSelectedGenres" />
+                <FilterCategory title="Genres" :options="genres" :selectedOptions="selectedGenres" />
                 <FilterCategory title="Years" :options="years" :selectedOptions="selectedYears" />
             </div>
-            <SearchInput :term="term" :search="search" @update:term="updateSearchTerm" @update:selectedOptions="updateSelectedYears" />
+            <SearchInput :term="term" :search="search" @update:term="updateSearchTerm" />
         </div>
         <div class="filters--lower">
             <TypesFilter :types="types" :selectedTypes="selectedTypes" @update:selectedTypes="updateSelectedTypes" />
@@ -43,27 +43,17 @@ export default {
     },
     computed: {
         filteredGenres() {
-            const selectedGenres = this.selectedGenres;
-            return selectedGenres.length > 0 ? this.items.filter((item) => selectedGenres.some((i) => item.genre.includes(i))) : this.items;
+            return this.selectedGenres.length > 0 ? this.items.filter((item) => this.selectedGenres.some((i) => item.genre.includes(i))) : this.items;
         },
         filteredYears() {
-            const selectedYears = this.selectedYears;
-            return selectedYears.length > 0 ? this.items.filter((item) => selectedYears.includes(item.year)) : this.items;
+            return this.selectedYears.length > 0 ? this.items.filter((item) => this.selectedYears.includes(item.year)) : this.items;
         },
         filteredTypes() {
-            const selectedTypes = this.selectedTypes;
-            return selectedTypes.length > 0 ? this.items.filter((item) => selectedTypes.includes(item.type)) : this.items;
-        },
-        filteredChecks() {
-            let arrA = this.filteredGenres;
-            let arrB = this.filteredYears;
-            return arrA.filter((x) => arrB.includes(x));
+            return this.selectedTypes.length > 0 ? this.items.filter((item) => this.selectedTypes.includes(item.type)) : this.items;
         },
         filteredResults() {
-            let arrA = this.filteredChecks;
-            let arrB = this.filteredTypes;
-            // return arrA.filter((x) => arrB.includes(x));
-            return this.selectedTypes.length > 0 ? arrA.filter((x) => arrB.includes(x)) : arrA;
+            const filteredChecks = this.filteredGenres.filter((item) => this.filteredYears.includes(item));
+            return this.selectedTypes.length > 0 ? filteredChecks.filter((item) => this.filteredTypes.includes(item)) : filteredChecks;
         },
         genresLength() {
             return this.selectedGenres.length;
@@ -78,17 +68,13 @@ export default {
         }
     },
     methods: {
-        showGenresDropdown() {
-            this.showGenres = !this.showGenres;
+        toggleDropdown(dropdown) {
+            if (dropdown === 'genres') this.showGenres = !this.showGenres;
+            if (dropdown === 'years') this.showYears = !this.showYears;
         },
-        showYearsDropdown() {
-            this.showYears = !this.showYears;
-        },
-        closeGenresDropdown() {
-            this.showGenres = false;
-        },
-        closeYearsDropdown() {
-            this.showYears = false;
+        closeDropdown(dropdown) {
+            if (dropdown === 'genres') this.showGenres = false;
+            if (dropdown === 'years') this.showYears = false;
         },
         resetFilters() {
             this.selectedGenres = [];
@@ -102,12 +88,14 @@ export default {
         updateSearchTerm(term) {
             this.term = term;
         },
-        updateSelectedGenres(selectedGenres) {
-            this.selectedGenres = selectedGenres;
-        },
-
-        updateSelectedYears(selectedYears) {
-            this.selectedYears = selectedYears;
+        updateSelectedOptions(option, selectedOptions) {
+            const index = selectedOptions.indexOf(option);
+            if (index !== -1) {
+                selectedOptions.splice(index, 1);
+            } else {
+                selectedOptions.push(option);
+            }
+            this.$emit('update:selectedOptions', selectedOptions);
         }
     },
     created() {
