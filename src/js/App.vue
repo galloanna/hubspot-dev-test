@@ -1,7 +1,9 @@
 <template>
     <div class="media">
         <Filters v-if="this.items.length" :search="search" :filteredItems="filteredItems" @resetItems="resetItems" :items="this.items" @updateFilter="updateFilter" />
-        <Items :items="filteredItems.length ? filteredItems : items" />
+        <Items v-if="!isFiltered && filteredItems.length === 0" :items="items" />
+        <Items v-else-if="isFiltered && filteredItems.length > 0" :items="filteredItems" />
+        <div v-else class="no-results-message">No results found! Try expanding your search.</div>
     </div>
 </template>
 
@@ -19,7 +21,7 @@ export default {
         return {
             items: [],
             filteredItems: [],
-            str: ''
+            isFiltered: false
         };
     },
     created() {
@@ -28,18 +30,22 @@ export default {
     },
     methods: {
         updateFilter(filteredResults) {
-            console.log('FILTERED RESULTS IN PARENT', filteredResults);
             this.filteredItems = filteredResults;
+            this.isFiltered = true;
         },
         search(term) {
-            this.resetItems();
+            this.filteredItems = [];
+            this.isFiltered = true;
             console.log('Search for ', term, ' performed');
             this.filteredItems = this.items.filter((item) => {
                 return item.title.toLowerCase().includes(term.toLowerCase());
             });
         },
         resetItems() {
-            this.filteredItems = [];
+            this.$nextTick(() => {
+                this.filteredItems = [];
+                this.isFiltered = false;
+            });
         },
         async getData() {
             try {
@@ -67,5 +73,10 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 15px;
+}
+
+.no-results-message {
+    font-family: Montserrat;
+    align-self: center;
 }
 </style> 
