@@ -2,7 +2,7 @@
 
 **Hello, HubSpot. It's me.** 👋
 
-[![Adele](https://github.com/galloanna/hubspot-dev-test/assets/61474460/bcf08d2a-8689-4cb7-90e5-f5975c977ad8)](https://youtu.be/YQHsXMglC9A?t=75)
+[![Adele](https://github-production-user-asset-6210df.s3.amazonaws.com/61474460/260922037-bcf08d2a-8689-4cb7-90e5-f5975c977ad8.jpg)](https://youtu.be/YQHsXMglC9A?t=75)
 
 ## Given more time, what would you have done differently?
 
