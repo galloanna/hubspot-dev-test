@@ -4,6 +4,7 @@
 
 // THEME-LEVEL STYLES
 @import './theme/colors';
+@import './theme/mixins';
 
 // COMPONENT-LEVEL STYLES
 @import './components/blockquote-cta';
@@ -12,14 +13,14 @@
 @import './elements/checkbox';
 
 body {
-  margin: 0;
-  font-family: 'Roboto', 'Montserrat', sans-serif;
+    margin: 0;
+    font-family: 'Roboto', 'Montserrat', sans-serif;
 }
 
 .exercise-header {
-  padding: 1rem 0;
-  margin: 2rem 0;
-  text-align: center;
-  color: #fff;
-  background-color: #00a4bd;
+    padding: 1rem 0;
+    margin: 2rem 0;
+    text-align: center;
+    color: #fff;
+    background-color: #00a4bd;
 }

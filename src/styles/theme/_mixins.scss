@@ -1,0 +1,21 @@
+@mixin _circle-icon($backgroundColor, $borderColor) {
+    position: absolute;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    content: '';
+    background-color: $backgroundColor;
+    border: 2px solid $borderColor;
+    box-sizing: border-box;
+}
+
+@mixin _button-style($backgroundColor, $textColor) {
+    background: $backgroundColor;
+    color: $textColor;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 20px 35px;
+    font-size: 12px;
+    transition: filter 0.2s linear;
+}
