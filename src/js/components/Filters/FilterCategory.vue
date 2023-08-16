@@ -68,3 +68,78 @@ export default {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+@import '../../../styles/index.scss';
+.filters__category {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    @include xsmall {
+        min-width: 50%;
+    }
+    @include medium {
+        min-width: 150px;
+    }
+}
+.filters__category:not(:last-child) {
+    margin-right: 20px;
+}
+.filters__category-header {
+    background-color: $soft-white;
+    width: 100%;
+    border: 0;
+    box-shadow: 0 3px $light-gray;
+    padding: 10px;
+    position: relative;
+    display: flex;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: $medium-gray;
+    font-family: 'Montserrat';
+    text-transform: uppercase;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+.filters__category-header::after {
+    content: '';
+    height: 8px;
+    width: 8px;
+    border-bottom: 2px solid $medium-gray;
+    border-right: 2px solid $medium-gray;
+    position: absolute;
+    transform: rotate(45deg);
+    right: 10px;
+    align-self: center;
+}
+.filters__category-options {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: $white;
+    margin-top: 50px;
+    border: 1px solid $light-gray;
+    max-height: 350px;
+    overflow-y: scroll;
+    text-transform: uppercase;
+    font-size: 14px;
+    visibility: hidden;
+}
+.filters__category-options--active {
+    visibility: visible;
+}
+.filters__category-option {
+    cursor: pointer;
+    font-family: 'Montserrat';
+    padding: 10px;
+}
+.filters__category-option:not(:last-child) {
+    border-bottom: 1px solid $light-gray;
+}
+.filters__category-option:hover,
+.filters__category-option:focus {
+    background-color: $soft-white;
+}
+</style>

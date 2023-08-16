@@ -116,7 +116,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../../styles/index.scss';
 .filters {
     @include xsmall {
@@ -125,97 +125,25 @@ export default {
     @include large {
         margin: 15px;
     }
-    &--upper,
-    &--lower {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    &--lower {
-        margin-top: 10px;
-    }
-    &__categories {
-        display: flex;
-        font-weight: 700;
-        color: $medium-gray;
-        width: calc(100% - 20px);
-        margin-bottom: 20px;
-        @include medium {
-            width: 150px;
-            margin-bottom: 0;
-        }
-    }
-    &__category {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        @include xsmall {
-            min-width: 50%;
-        }
-        @include medium {
-            min-width: 150px;
-        }
-        &:not(:last-child) {
-            margin-right: 20px;
-        }
-        &-header {
-            background-color: $soft-white;
-            width: 100%;
-            border: 0;
-            box-shadow: 0 3px $light-gray;
-            padding: 10px;
-            position: relative;
-            display: flex;
-            border: none;
-            font-size: 14px;
-            font-weight: 700;
-            color: $medium-gray;
-            font-family: 'Montserrat';
-            text-transform: uppercase;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            cursor: pointer;
-            &:after {
-                content: '';
-                height: 8px;
-                width: 8px;
-                border-bottom: 2px solid $medium-gray;
-                border-right: 2px solid $medium-gray;
-                position: absolute;
-                transform: rotate(45deg);
-                right: 10px;
-                align-self: center;
-            }
-        }
-        &-options {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            background-color: $white;
-            margin-top: 50px;
-            border: 1px solid $light-gray;
-            max-height: 350px;
-            overflow-y: scroll;
-            text-transform: uppercase;
-            font-size: 14px;
-            opacity: 0;
-            transition: all 0.2s linear;
-            &--active {
-                opacity: 1;
-            }
-        }
-        &-option {
-            cursor: pointer;
-            font-family: 'Montserrat';
-            padding: 10px;
-            &:not(:last-child) {
-                border-bottom: 1px solid $light-gray;
-            }
-            &:hover,
-            &:focus {
-                background-color: $soft-white;
-            }
-        }
+}
+.filters--upper,
+.filters--lower {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.filters--lower {
+    margin-top: 10px;
+}
+.filters__categories {
+    display: flex;
+    font-weight: 700;
+    color: $medium-gray;
+    width: calc(100% - 20px);
+    margin-bottom: 20px;
+    @include medium {
+        width: 150px;
+        margin-bottom: 0;
     }
 }
 </style>
