@@ -1,7 +1,9 @@
 <template>
     <div class="filters__category">
         <button :aria-controls="id" aria-haspopup="true" class="filters__category-header" @click="toggleDropdown" :aria-expanded="showDropdown">
-            <span>{{ title }} ({{ selectedOptions.length }})</span>
+            <span v-if="selectedOptions.length === 0">{{ makeSingular(title) }}</span>
+            <span v-else-if="selectedOptions.length === 1">{{ selectedOptions.length }} {{ makeSingular(title) }}</span>
+            <span v-else>{{ selectedOptions.length }} {{ title }}</span>
         </button>
         <div
             :id="id"
@@ -44,6 +46,10 @@ export default {
         }
     },
     methods: {
+        makeSingular(text) {
+            return text.substring(0, text.length - 1);
+        },
+
         toggleDropdown() {
             this.showDropdown = !this.showDropdown;
         },
