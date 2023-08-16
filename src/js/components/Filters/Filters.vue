@@ -3,68 +3,10 @@
         <h2 class="sr-only">Filters</h2>
         <div class="filters--upper">
             <div class="filters__categories">
-                <div class="filters__category">
-                    <button
-                        aria-controls="genres"
-                        aria-haspopup="true"
-                        class="filters__category-header"
-                        @click="showGenresDropdown()"
-                        @keydown.esc="closeGenresDropdown()"
-                        :aria-expanded="[showGenres ? true : false]"
-                    >
-                        <span v-if="genresLength > 1">{{ genresLength }} Genres</span>
-                        <span v-else-if="genresLength == 1">{{ genresLength }} Genre</span>
-                        <span v-else>Genre</span>
-                    </button>
-                    <div
-                        id="genres"
-                        role="dialog"
-                        aria-label="Genre Options"
-                        v-if="showGenres"
-                        v-click-outside="closeGenresDropdown"
-                        class="filters__category-options"
-                        :class="[showGenres ? 'filters__category-options--active' : '']"
-                        z-index="1"
-                    >
-                        <legend class="sr-only">Choose a genre</legend>
-                        <label class="filters__category-option" :for="index" v-for="(genre, index) in genres" :key="genre" @keydown.esc="closeGenresDropdown()">
-                            <input :id="index" :value="genre" name="genre" type="checkbox" v-model="selectedGenres" />
-                            {{ genre }}</label
-                        >
-                    </div>
-                </div>
-                <div class="filters__category">
-                    <button
-                        aria-controls="years"
-                        aria-haspopup="true"
-                        class="filters__category-header"
-                        @click="showYearsDropdown()"
-                        @keydown.esc="closeYearsDropdown()"
-                        :aria-expanded="[showYears ? true : false]"
-                    >
-                        <span v-if="yearsLength > 1">{{ yearsLength }} Years</span>
-                        <span v-else-if="yearsLength == 1">{{ yearsLength }} Year</span>
-                        <span v-else>Year</span>
-                    </button>
-                    <div
-                        id="years"
-                        role="dialog"
-                        aria-label="Year Options"
-                        v-if="showYears"
-                        v-click-outside="closeYearsDropdown"
-                        class="filters__category-options"
-                        :class="[showYears ? 'filters__category-options--active' : '']"
-                        z-index="1"
-                    >
-                        <legend class="sr-only">Choose a year</legend>
-                        <label class="filters__category-option" :for="index" v-for="(year, index) in years" :key="year" @keydown.esc="closeYearsDropdown()">
-                            <input :id="index" :value="year" name="genre" type="checkbox" v-model="selectedYears" />
-                            {{ year }}</label
-                        >
-                    </div>
-                </div>
+                <FilterCategory title="Genres" :options="genres" :selectedOptions="selectedGenres" @update:selectedOptions="updateSelectedGenres" />
+                <FilterCategory title="Years" :options="years" :selectedOptions="selectedYears" />
             </div>
-            <SearchInput :term="term" :search="search" @update:term="updateSearchTerm" />
+            <SearchInput :term="term" :search="search" @update:term="updateSearchTerm" @update:selectedOptions="updateSelectedYears" />
         </div>
         <div class="filters--lower">
             <TypesFilter :types="types" :selectedTypes="selectedTypes" @update:selectedTypes="updateSelectedTypes" />
@@ -76,12 +18,13 @@
 <script>
 import vClickOutside from 'click-outside-vue3';
 import ClearButton from './ClearButton.vue';
+import FilterCategory from './FilterCategory.vue';
 import SearchInput from '../SearchInput.vue';
 import TypesFilter from './TypesFilter.vue';
 
 export default {
     props: ['search', 'filteredItems', 'resetItems', 'items'],
-    components: { ClearButton, SearchInput, TypesFilter },
+    components: { ClearButton, FilterCategory, SearchInput, TypesFilter },
     directives: {
         clickOutside: vClickOutside.directive
     },
@@ -158,6 +101,13 @@ export default {
         },
         updateSearchTerm(term) {
             this.term = term;
+        },
+        updateSelectedGenres(selectedGenres) {
+            this.selectedGenres = selectedGenres;
+        },
+
+        updateSelectedYears(selectedYears) {
+            this.selectedYears = selectedYears;
         }
     },
     created() {
