@@ -63,20 +63,19 @@ export default {
 <style lang="scss" scoped>
 @import '../styles/index.scss';
 .media {
+    border: 1px solid $light-gray;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
     @include xsmall {
         margin: 10px;
     }
     @include large {
         margin: 30px;
     }
-    border: 1px solid $light-gray;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
 }
-
 .no-results-message {
-    font-family: Montserrat;
+    font-family: 'Montserrat';
     align-self: center;
 }
 </style> 
