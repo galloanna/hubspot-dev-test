@@ -4,7 +4,16 @@
             <fieldset>
                 <legend class="sr-only">Choose a media type</legend>
                 <label tabindex="0" class="filters__type-label" :for="type" v-for="(type, index) in types" :key="type">
-                    <input tabindex="0" class="filters__type-input" type="radio" :id="type" :value="type" :checked="selectedTypes.includes(type)" @change="updateSelectedType(type)" />
+                    <input
+                        tabindex="0"
+                        class="filters__type-input"
+                        type="radio"
+                        :id="type"
+                        :value="type"
+                        :checked="selectedTypes.includes(type)"
+                        @change="updateSelectedType(type)"
+                        :data-testid="`${type}-radio`"
+                    />
                     {{ type.charAt(0).toUpperCase() + type.substr(1) + 's' }}
                 </label>
             </fieldset>

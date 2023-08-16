@@ -114,14 +114,14 @@ export default {
         const all = this.items.map((m) => m.genre);
         const merged = [].concat(...all);
         let uniqueMerged = [...new Set(merged.sort((a, b) => (a < b ? -1 : 1)))];
-        console.log('genres', uniqueMerged);
+        // console.log('genres', uniqueMerged);
         this.genres = uniqueMerged;
 
         // gets the unique years
         const allYears = this.items.map((m) => m.year);
         const mergedYears = [].concat(...allYears);
         let uniqueMergedYears = [...new Set(mergedYears.sort((a, b) => (a < b ? -1 : 1)))];
-        console.log('years', uniqueMergedYears);
+        // console.log('years', uniqueMergedYears);
         this.years = uniqueMergedYears;
     }
 };

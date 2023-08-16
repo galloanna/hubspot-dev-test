@@ -1,6 +1,6 @@
 <template>
     <div class="filters__category">
-        <button :aria-controls="id" aria-haspopup="true" class="filters__category-header" @click="toggleDropdown" :aria-expanded="showDropdown">
+        <button :aria-controls="id" aria-haspopup="true" class="filters__category-header" @click="toggleDropdown" :aria-expanded="showDropdown" :data-testid="`${title}-button`">
             <span v-if="selectedOptions.length === 0">{{ makeSingular(title) }}</span>
             <span v-else-if="selectedOptions.length === 1">{{ selectedOptions.length }} {{ makeSingular(title) }}</span>
             <span v-else>{{ selectedOptions.length }} {{ title }}</span>
@@ -16,7 +16,15 @@
         >
             <legend class="sr-only">Choose {{ title.toLowerCase() }}</legend>
             <label class="filters__category-option" :for="option" v-for="(option, index) in options" :key="option" @keydown.esc="closeDropdown">
-                <input :id="option" :value="option" :name="id" type="checkbox" :checked="selectedOptions.includes(option)" @change="updateSelectedOptions(option)" />
+                <input
+                    :id="option"
+                    :value="option"
+                    :name="id"
+                    type="checkbox"
+                    :checked="selectedOptions.includes(option)"
+                    @change="updateSelectedOptions(option)"
+                    :data-testid="`${option}-checkbox`"
+                />
                 {{ option }}
             </label>
         </div>

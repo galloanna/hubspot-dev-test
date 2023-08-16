@@ -1,5 +1,5 @@
 <template>
-    <button class="filters__clear-button" @click="resetFilters">Clear Filters</button>
+    <button class="filters__clear-button" @click="resetFilters" data-testid="clear-button">Clear Filters</button>
 </template>
 
 <script>
